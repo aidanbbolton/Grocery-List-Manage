@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -33,8 +34,18 @@ public class GCController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         SampleData.fillSampleData(glList);
-        listView.setItems(glList); //set the listView in the scene as the list of items from sample data
 
+        ObservableList<String> mainItems = FXCollections.observableArrayList();
+        for(int i=0; i<glList.size();i++) {
+            for(int j=0; j<glList.get(i).getItems().size();j++) {
+                mainItems.add(glList.get(i).getItems().get(j)+ "");
+            }
+        }
+        GroceryList mainList = new GroceryList("System",mainItems,"Main List");
+        glList.add(mainList);
+
+
+        listView.setItems(glList); //set the listView in the scene as the list of items from sample data
 
         listView.getSelectionModel().selectedItemProperty().addListener(
                 GCChangeListener = (observable, oldValue, newValue) -> {
@@ -59,6 +70,12 @@ public class GCController implements Initializable {
 
         // Pre-select the first item
         listView.getSelectionModel().selectFirst();
+
+    }
+
+
+    public void CreateButtonAction(ActionEvent actionEvent) {
+
 
     }
 }

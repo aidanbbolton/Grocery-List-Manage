@@ -16,7 +16,7 @@ public class GroceryList {
 
     private StringProperty author = new SimpleStringProperty(this, "author", "");
     private StringProperty title = new SimpleStringProperty(this, "title", "");
-    private ObservableList items = FXCollections.observableArrayList();
+    private ObservableList<String> items = FXCollections.observableArrayList();
 
     public GroceryList(String author, ObservableList<String> items, String title) {
         this.author.set(author);
