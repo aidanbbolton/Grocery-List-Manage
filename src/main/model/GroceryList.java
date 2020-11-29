@@ -15,13 +15,11 @@ public class GroceryList {
 
 
     private StringProperty author = new SimpleStringProperty(this, "author", "");
-    private StringProperty title = new SimpleStringProperty(this, "title", "");
     private ObservableList<String> items = FXCollections.observableArrayList();
 
-    public GroceryList(String author, ObservableList<String> items, String title) {
+    public GroceryList(String author, ObservableList<String> items) {
         this.author.set(author);
         this.items.setAll(items);
-        this.title.set(title);
     }
 
     public String getAuthor() {
@@ -44,24 +42,7 @@ public class GroceryList {
         this.items = items;
     }
 
-    public String getTitle() {
-        return title.get();
-    }
-
-    public StringProperty titleProperty() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title.set(title);
-    }
-
-    public String toString() {
-        return title.get() + " by " + author.get();
-    }
-
-
     public static Callback<GroceryList, Observable[]> extractor = p -> new Observable[]
-            {p.titleProperty(), p.authorProperty()};
+            {p.authorProperty()};
 
 }
