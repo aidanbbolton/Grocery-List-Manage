@@ -7,6 +7,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import main.model.GroceryList;
 import main.model.SampleData;
+
+
 
 public class GCController implements Initializable {
 
@@ -67,6 +70,59 @@ public class GCController implements Initializable {
     @FXML
     private Tab tabMain;
 
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Button addButton1;
+    @FXML
+    private Button addButton2;
+    @FXML
+    private Button addButton3;
+    @FXML
+    private Button addButton4;
+    @FXML
+    private Button addButton5;
+    @FXML
+    private Button addButton6;
+    @FXML
+    private TextField textField1;
+    @FXML
+    private TextField textField2;
+    @FXML
+    private TextField textField3;
+    @FXML
+    private TextField textField4;
+    @FXML
+    private TextField textField5;
+    @FXML
+    private TextField textField6;
+
+    @FXML
+    private Button deleteButton1;
+    @FXML
+    private Button deleteButton2;
+    @FXML
+    private Button deleteButton3;
+    @FXML
+    private Button deleteButton4;
+    @FXML
+    private Button deleteButton5;
+    @FXML
+    private Button deleteButton6;
+
+
+    private TextField currentTextField;
+
+    private String selectedItem;
+
+    private ListView<String> currentList;
+
+
+
+    private Tab currentTab;
+
+
 //    private GroceryList selectedGL;
 //    private final BooleanProperty modifiedProperty = new SimpleBooleanProperty(false);
 //    private ChangeListener<GroceryList> GCChangeListener;
@@ -112,30 +168,94 @@ public class GCController implements Initializable {
         //I made a method to update the Main list so it will be easy to update it when we make changes to lists
         updateMainList();
 
-//        listView.setItems(glList); //set the listView in the scene as the list of items from sample data
-//
-//        listView.getSelectionModel().selectedItemProperty().addListener(
-//                GCChangeListener = (observable, oldValue, newValue) -> {
-//                    System.out.println("Last Selected item: " + newValue);
-//                    System.out.println("Current Selected:");
-//                    for(GroceryList gl : listView.getSelectionModel().getSelectedItems()){
-//                        System.out.println(gl.toString());
-//                    }
-//                    selectedGL = newValue;
-//                    modifiedProperty.set(false);
-//                    if (newValue != null) {
-//                        // Populate controls with selected list
-//                        authorTextField.setText(selectedGL.getAuthor());
-//                        itemsView.setItems(selectedGL.getItems());
-//                    } else {
-//                        titleTextField.setText("");
-//                        authorTextField.setText("");
-//                    }
-//
-//                });
-//
-//        // Pre-select the first item
-//        listView.getSelectionModel().selectFirst();
+        setCurrentList(tab1List); //currentList will start on the first tab
+        setCurrentTab(tab1);
+
+        tabPane.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> {
+                    System.out.println("Current Selected Tab: ");
+                    String printTab = getCurrentTab().getId();
+//                    System.out.println(printTab);
+                    setCurrentTab(newValue);
+                    if(printTab.contains("M")){ //sets current list to main and current selection to first
+                        setCurrentList(tabMainList);
+                        getCurrentList().getSelectionModel().select(tabMainList.getItems().get(0));
+                        setCurrentTextField(textField6);
+                    } else if (printTab.contains("1")){//sets current list to 1 and current selection to first
+                        setCurrentList(tab1List);
+                        getCurrentList().getSelectionModel().select(tab1List.getItems().get(0));
+                        setCurrentTextField(textField1);
+                    } else if (printTab.contains("2")){//sets current list to 2 and current selection to first
+                        setCurrentList(tab2List);
+                        getCurrentList().getSelectionModel().select(tab2List.getItems().get(0));
+                        setCurrentTextField(textField2);
+                    }else if (printTab.contains("3")){//sets current list to 3 and current selection to first
+                        setCurrentList(tab3List);
+                        getCurrentList().getSelectionModel().select(tab3List.getItems().get(0));
+                        setCurrentTextField(textField3);
+                    }else if (printTab.contains("4")){//sets current list to 4 and current selection to first
+                        setCurrentList(tab4List);
+                        getCurrentList().getSelectionModel().select(tab4List.getItems().get(0));
+                        setCurrentTextField(textField4);
+                    }else if (printTab.contains(("5"))){//sets current list to 5 and current selection to first
+                        setCurrentList(tab5List);
+                        getCurrentList().getSelectionModel().select(tab5List.getItems().get(0));
+                        setCurrentTextField(textField5);
+                    }
+                    System.out.println(getCurrentList().getId());
+                    System.out.println(getCurrentList().getSelectionModel().getSelectedItems().toString());
+                    getCurrentList().getSelectionModel().selectedItemProperty().addListener(
+                            (obs, ov, nv) -> {
+
+                                System.out.println("Current Selected Item: ");
+                                System.out.println(getCurrentList().getSelectionModel().getSelectedItems().toString());
+
+
+                                setSelectedItem(nv);
+                                getCurrentList().getSelectionModel().select(nv);
+                            });
+                    getCurrentList().getSelectionModel().selectFirst();
+                });
+        tabPane.getSelectionModel().select(tab2);
+        tabPane.getSelectionModel().select(tab1);
+
+
+
+
+    }
+
+    //adds a new item to the list from the text in the text field
+    @FXML
+    private void addButtonAction(ActionEvent actionEvent){
+        //find out what list, tab, and text field is currently being viewed by the user
+        Tab addTab = getCurrentTab();
+        if(!getCurrentTextField().getText().isBlank()){
+            String userText = getCurrentTextField().getText();
+            System.out.println("Add " + userText);
+            getCurrentList().getItems().add(userText);
+        }
+        updateMainList();
+    }
+
+    //deletes an item from the current list
+    @FXML
+    private void deleteButtonAction(ActionEvent actionEvent){
+        //find out what list the user is viewing
+        String delItem = getCurrentList().getSelectionModel().getSelectedItem();
+        getCurrentList().getItems().remove(delItem);
+        System.out.println("Deleted " + delItem);
+        if(!getCurrentTab().equals(tabMain)){
+            updateMainList();
+        }
+    }
+
+
+
+    //gets the current tab
+    private Tab getCurrentTab(){
+        Tab tab = new Tab();
+        tab = tabPane.getSelectionModel().getSelectedItem();
+        return tab;
 
     }
 
@@ -191,6 +311,34 @@ public class GCController implements Initializable {
             }
         }
 
+    }
+
+    public ListView<String> getCurrentList() {
+        return currentList;
+    }
+
+    public void setCurrentList(ListView<String> currentList) {
+        this.currentList = currentList;
+    }
+
+    public void setCurrentTab(Tab currentTab) {
+        this.currentTab = currentTab;
+    }
+
+    public TextField getCurrentTextField() {
+        return currentTextField;
+    }
+
+    public void setCurrentTextField(TextField currentTextField) {
+        this.currentTextField = currentTextField;
+    }
+
+    public String getSelectedItem() {
+        return selectedItem;
+    }
+
+    public void setSelectedItem(String selectedItem) {
+        this.selectedItem = selectedItem;
     }
 
 }
