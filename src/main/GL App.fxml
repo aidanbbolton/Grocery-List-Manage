@@ -23,14 +23,20 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="414.0">
+                              <VBox fx:id="tab1Vbox" prefHeight="467.0" prefWidth="414.0">
                                  <children>
-                                    <Label fx:id="tab1Name" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                    <Label fx:id="tab1Name" onMouseClicked="#onLabelClicked" prefHeight="50.0" prefWidth="75.0" text="Label">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ListView fx:id="tab1List" prefHeight="418.0" prefWidth="342.0" />
+                                    <ListView fx:id="tab1List" prefHeight="418.0" prefWidth="342.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="30.0" prefWidth="393.0">
                                        <children>
                                           <TextField fx:id="textField1" promptText="New Item">
@@ -48,6 +54,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -63,14 +72,20 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="417.0">
+                              <VBox fx:id="tab2Vbox" prefHeight="467.0" prefWidth="417.0">
                                  <children>
-                                    <Label fx:id="tab2Name" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                    <Label fx:id="tab2Name" onMouseClicked="#onLabelClicked" prefHeight="50.0" prefWidth="75.0" text="Label">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ListView fx:id="tab2List" prefHeight="418.0" prefWidth="317.0" />
+                                    <ListView fx:id="tab2List" prefHeight="418.0" prefWidth="317.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="45.0" prefWidth="400.0">
                                        <children>
                                           <TextField fx:id="textField2" promptText="New Item">
@@ -88,6 +103,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -103,14 +121,20 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="409.0">
+                              <VBox fx:id="tab3Vbox" prefHeight="467.0" prefWidth="409.0">
                                  <children>
-                                    <Label fx:id="tab3Name" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                    <Label fx:id="tab3Name" onMouseClicked="#onLabelClicked" prefHeight="50.0" prefWidth="75.0" text="Label">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ListView fx:id="tab3List" prefHeight="418.0" prefWidth="317.0" />
+                                    <ListView fx:id="tab3List" prefHeight="418.0" prefWidth="317.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="45.0" prefWidth="400.0">
                                        <children>
                                           <TextField fx:id="textField3" promptText="New Item">
@@ -128,6 +152,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -143,14 +170,20 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="410.0">
+                              <VBox fx:id="tab4Vbox" prefHeight="467.0" prefWidth="410.0">
                                  <children>
-                                    <Label fx:id="tab4Name" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                    <Label fx:id="tab4Name" onMouseClicked="#onLabelClicked" prefHeight="50.0" prefWidth="75.0" text="Label">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ListView fx:id="tab4List" prefHeight="418.0" prefWidth="317.0" />
+                                    <ListView fx:id="tab4List" prefHeight="418.0" prefWidth="317.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="45.0" prefWidth="400.0">
                                        <children>
                                           <TextField fx:id="textField4" promptText="New Item">
@@ -168,6 +201,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -183,14 +219,20 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="403.0">
+                              <VBox fx:id="tab5Vbox" prefHeight="467.0" prefWidth="403.0">
                                  <children>
-                                    <Label fx:id="tab5Name" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                    <Label fx:id="tab5Name" onMouseClicked="#onLabelClicked" prefHeight="50.0" prefWidth="75.0" text="Label">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
                                     </Label>
-                                    <ListView fx:id="tab5List" prefHeight="418.0" prefWidth="317.0" />
+                                    <ListView fx:id="tab5List" prefHeight="418.0" prefWidth="317.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="45.0" prefWidth="400.0">
                                        <children>
                                           <TextField fx:id="textField5" promptText="New Item">
@@ -208,6 +250,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>
@@ -223,14 +268,25 @@
                      <children>
                         <HBox prefHeight="467.0" prefWidth="400.0">
                            <children>
-                              <VBox prefHeight="467.0" prefWidth="408.0">
+                              <VBox fx:id="tabMainVbox" prefHeight="467.0" prefWidth="408.0">
                                  <children>
-                                    <Label fx:id="tabMainName" prefHeight="50.0" prefWidth="75.0" text="Label">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                    </Label>
-                                    <ListView fx:id="tabMainList" prefHeight="418.0" prefWidth="317.0" />
+                                    <HBox>
+                                       <VBox.margin>
+                                          <Insets left="3.0" />
+                                       </VBox.margin>
+                                       <children>
+                                          <Label fx:id="tabMainName" prefHeight="50.0" prefWidth="75.0" text="Label">
+                                             <font>
+                                                <Font size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="printButton" onAction="#printButtonAction" mnemonicParsing="false" text="Print" translateX="252.0" translateY="3.0" />
+                                       </children>
+                                    </HBox>
+                                    <ListView fx:id="tabMainList" prefHeight="418.0" prefWidth="317.0">
+                                       <VBox.margin>
+                                          <Insets left="3.0" right="3.0" />
+                                       </VBox.margin></ListView>
                                     <HBox alignment="CENTER" prefHeight="45.0" prefWidth="400.0">
                                        <children>
                                           <TextField fx:id="textField6" promptText="New Item">
@@ -248,6 +304,9 @@
                                              </HBox.margin>
                                           </ButtonBar>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
                               </VBox>

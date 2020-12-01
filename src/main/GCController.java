@@ -10,14 +10,30 @@ import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import main.model.GroceryList;
 import main.model.SampleData;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
 
 
 
@@ -34,6 +50,8 @@ public class GCController implements Initializable {
     private ListView<String> tab1List;
     @FXML
     private Tab tab1;
+    @FXML
+    private VBox tab1Vbox;
 
     @FXML
     private Label tab2Name;
@@ -41,6 +59,8 @@ public class GCController implements Initializable {
     private ListView<String> tab2List;
     @FXML
     private Tab tab2;
+    @FXML
+    private VBox tab2Vbox;
 
     @FXML
     private Label tab3Name;
@@ -48,6 +68,8 @@ public class GCController implements Initializable {
     private ListView<String> tab3List;
     @FXML
     private Tab tab3;
+    @FXML
+    private VBox tab3Vbox;
 
     @FXML
     private Label tab4Name;
@@ -55,6 +77,8 @@ public class GCController implements Initializable {
     private ListView<String> tab4List;
     @FXML
     private Tab tab4;
+    @FXML
+    private VBox tab4Vbox;
 
     @FXML
     private Label tab5Name;
@@ -62,6 +86,8 @@ public class GCController implements Initializable {
     private ListView<String> tab5List;
     @FXML
     private Tab tab5;
+    @FXML
+    private VBox tab5Vbox;
 
     @FXML
     private Label tabMainName;
@@ -69,6 +95,8 @@ public class GCController implements Initializable {
     private ListView<String> tabMainList;
     @FXML
     private Tab tabMain;
+    @FXML
+    private VBox tabMainVbox;
 
     @FXML
     private TabPane tabPane;
@@ -118,6 +146,8 @@ public class GCController implements Initializable {
 
     private ListView<String> currentList;
 
+    private Label selectedLabel;
+
 
 
     private Tab currentTab;
@@ -145,22 +175,36 @@ public class GCController implements Initializable {
         tab1Name.setText(data.get(0).getAuthor());
         tab1List.setItems( data.get(0).getItems());
         tab1.setText(String.valueOf(data.get(0).getAuthor().charAt(0)));
+        tab1.setStyle("-fx-background-color:#DF00FF73");
+        tab1Vbox.setBackground(new Background(new BackgroundFill(Color.rgb(223,0,255,.45), CornerRadii.EMPTY, Insets.EMPTY)));
 
         tab2Name.setText(data.get(1).getAuthor());
         tab2List.setItems( data.get(1).getItems());
         tab2.setText(String.valueOf(data.get(1).getAuthor().charAt(0)));
+        tab2.setStyle("-fx-background-color:#ED7D3173");
+        tab2Vbox.setBackground(new Background(new BackgroundFill(Color.rgb(237,125,49,.45), CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         tab3Name.setText(data.get(2).getAuthor());
         tab3List.setItems( data.get(2).getItems());
         tab3.setText(String.valueOf(data.get(2).getAuthor().charAt(0)));
+        tab3.setStyle("-fx-background-color:#64ABE373");
+        tab3Vbox.setBackground(new Background(new BackgroundFill(Color.rgb(100,171,227,.45), CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         tab4Name.setText(data.get(3).getAuthor());
         tab4List.setItems( data.get(3).getItems());
         tab4.setText(String.valueOf(data.get(3).getAuthor().charAt(0)));
+        tab4.setStyle("-fx-background-color:#9FE2BF73");
+        tab4Vbox.setBackground(new Background(new BackgroundFill(Color.rgb(159,226,191,.45), CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         tab5Name.setText(data.get(4).getAuthor());
         tab5List.setItems( data.get(4).getItems());
         tab5.setText(String.valueOf(data.get(4).getAuthor().charAt(0)));
+        tab5.setStyle("-fx-background-color:#FFDB5373");
+        tab5Vbox.setBackground(new Background(new BackgroundFill(Color.rgb(255,219,88,.45), CornerRadii.EMPTY, Insets.EMPTY)));
+
 
         tabMainName.setText("Main");
         tabMain.setText("Main");
@@ -181,26 +225,32 @@ public class GCController implements Initializable {
                         setCurrentList(tabMainList);
                         getCurrentList().getSelectionModel().select(tabMainList.getItems().get(0));
                         setCurrentTextField(textField6);
+                        setSelectedLabel(tabMainName);
                     } else if (printTab.contains("1")){//sets current list to 1 and current selection to first
                         setCurrentList(tab1List);
                         getCurrentList().getSelectionModel().select(tab1List.getItems().get(0));
                         setCurrentTextField(textField1);
+                        setSelectedLabel(tab1Name);
                     } else if (printTab.contains("2")){//sets current list to 2 and current selection to first
                         setCurrentList(tab2List);
                         getCurrentList().getSelectionModel().select(tab2List.getItems().get(0));
                         setCurrentTextField(textField2);
+                        setSelectedLabel(tab2Name);
                     }else if (printTab.contains("3")){//sets current list to 3 and current selection to first
                         setCurrentList(tab3List);
                         getCurrentList().getSelectionModel().select(tab3List.getItems().get(0));
                         setCurrentTextField(textField3);
+                        setSelectedLabel(tab3Name);
                     }else if (printTab.contains("4")){//sets current list to 4 and current selection to first
                         setCurrentList(tab4List);
                         getCurrentList().getSelectionModel().select(tab4List.getItems().get(0));
                         setCurrentTextField(textField4);
+                        setSelectedLabel(tab4Name);
                     }else if (printTab.contains(("5"))){//sets current list to 5 and current selection to first
                         setCurrentList(tab5List);
                         getCurrentList().getSelectionModel().select(tab5List.getItems().get(0));
                         setCurrentTextField(textField5);
+                        setSelectedLabel(tab5Name);
                     }
                     System.out.println(getCurrentList().getId());
                     System.out.println(getCurrentList().getSelectionModel().getSelectedItems().toString());
@@ -249,6 +299,43 @@ public class GCController implements Initializable {
         }
     }
 
+    @FXML
+    private void onLabelClicked(MouseEvent mouseEvent) {
+
+        if(!getCurrentTextField().getText().isBlank()){
+            String newName = getCurrentTextField().getText();
+            System.out.println("Name Changed to" + newName);
+            getSelectedLabel().setText(newName);
+            getCurrentTab().setText(String.valueOf(newName.charAt(0)));
+        }
+    }
+
+    @FXML
+    private void printButtonAction(ActionEvent actionEvent) {
+
+        Document document = new Document();
+        String list = "Grocery List\n-----------\n";
+        for(int i=0;i<getCurrentList().getItems().size();i++) {
+
+            list += "- " + getCurrentList().getItems().get(i) + "\n";
+        }
+
+        try
+        {
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("Grocery List.pdf"));
+            document.open();
+            document.add(new Paragraph(list));
+            document.close();
+            writer.close();
+        } catch (DocumentException e)
+        {
+            e.printStackTrace();
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
 
     //gets the current tab
@@ -279,11 +366,9 @@ public class GCController implements Initializable {
         //I had to make the starting ObservableList this way because otherwise it would change other lists along the
         //way.
         ObservableList<String> currentList = FXCollections.observableArrayList();
-        for(int i=0;i<tab1List.getItems().size();i++) {
-            currentList.add(tab1List.getItems().get(i));
-        }
 
         //These calls just add in unique data to the running list.
+        combineLists(currentList,tab1List.getItems());
         combineLists(currentList,tab2List.getItems());
         combineLists(currentList,tab3List.getItems());
         combineLists(currentList,tab4List.getItems());
@@ -339,6 +424,14 @@ public class GCController implements Initializable {
 
     public void setSelectedItem(String selectedItem) {
         this.selectedItem = selectedItem;
+    }
+
+    public Label getSelectedLabel() {
+        return selectedLabel;
+    }
+
+    public void setSelectedLabel(Label selectedLabel) {
+        this.selectedLabel = selectedLabel;
     }
 
 }
